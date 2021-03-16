@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 16:27:29 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/15 15:57:38 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/16 22:37:09 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@
 # define ALTFLAG		0x000000220
 
 int		ft_printf(const char *fmt, ...);
+int		ft_strlen(char *s);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 16:26:55 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/17 01:01:31 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/17 02:00:31 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,20 +73,22 @@ flag_checker(char **fmt, int flags, unsigned int format_num)
 		flags |= SHOWSIGNFLAG;
 	else if (**fmt == '#')
 		flags |= ALTFLAG;
+	else
+		return ;	
 	(*fmt)++;
 	return ;
 }
 
-static void
-prec_checker(char **fmt, int flags, unsigned int *format_num)
+static int
+prec_checker(char **fmt, int flags, unsigned int format_num)
 {
-	if (**fmt <= '0' && **fmt <= '9')
+	while ('0' <= **fmt && **fmt <= '9')
 	{
-		*format_num *= 10;
-		*format_num += **fmt - '0';
+		format_num *= 10;
+		format_num += **fmt - '0';
 		(*fmt)++;
 	}
-	return ;
+	return (format_num);
 }
 
 static int
@@ -159,7 +161,7 @@ string_format(char **fmt, va_list ap, int flags, unsigned int format_num, int pr
 	else
 	{
 		out_putchar(s, flags, format_num);
-		return (ft_strlen(s));
+		return (ft_strlen(s)); // It does not work the way it is written.
 	}
 }
 
@@ -198,8 +200,7 @@ args_print(char **fmt, va_list ap, int print_len)
 		/*This is where it gets tricky.*/
 		// width_checker(flags, format_num);
 		/*prec*/
-		prec_checker(fmt, flags, &format_num);
-		(*fmt)++;
+		format_num = prec_checker(fmt, flags, format_num);
 	}
 	/*formatting*/
 	print_len = formatting(fmt, ap, flags, format_num, print_len); 

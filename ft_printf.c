@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 16:26:55 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/17 02:00:31 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/17 15:39:53 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ percent_printed(char **fmt)
 		return (0);
 }
 
-static void
+static int 
 flag_checker(char **fmt, int flags, unsigned int format_num)
 {
 	if (**fmt == '0' && format_num == 0)
@@ -74,9 +74,9 @@ flag_checker(char **fmt, int flags, unsigned int format_num)
 	else if (**fmt == '#')
 		flags |= ALTFLAG;
 	else
-		return ;	
+		return flags;	
 	(*fmt)++;
-	return ;
+	return flags;
 }
 
 static int
@@ -195,7 +195,7 @@ args_print(char **fmt, va_list ap, int print_len)
 	while(**fmt != '\0' && is_flag_width_prec(**fmt))
 	{
 		/*flag: 0, -, #*/
-		flag_checker(fmt, flags, format_num);
+		flags = flag_checker(fmt, flags, format_num);
 		/*width: *, .*/
 		/*This is where it gets tricky.*/
 		// width_checker(flags, format_num);

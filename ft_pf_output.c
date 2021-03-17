@@ -6,7 +6,7 @@
 /*   By: ymori <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:51:22 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/18 01:54:11 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/18 02:40:54 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,16 @@ percent_printed(const char **fmt)
 }
 
 /*using format_num*/
-void
+int
 out_putchar(const char *s, int flags, int format_num)
 {
 	unsigned int	count;
-	size_t			str_len;
+	int				str_len;
+	int				out_len;
 	char			outchar;
 
 	count = 0;
+	out_len = 0;
 	str_len = ft_strlen(s);
 	outchar = (flags & LEADZEROFLAG) ? '0' : ' ';
 	if (flags & LEFTFORMATFLAG)
@@ -50,11 +52,13 @@ out_putchar(const char *s, int flags, int format_num)
 		while (*s != 0)
 		{
 			ft_putchar(*s++);
+			out_len++;
 			count++;
 		}
 		while (format_num > count)
 		{
 			ft_putchar(' ');
+			out_len++;
 			format_num--;
 		}
 	}
@@ -63,10 +67,15 @@ out_putchar(const char *s, int flags, int format_num)
 		while (format_num > str_len)
 		{
 			ft_putchar(outchar);
+			out_len++;
 			format_num--;
 		}
 		while (*s != 0)
+		{
 			ft_putchar(*s++);
+			out_len++;
+		}
 	}	
+	return (out_len);
 }		
 

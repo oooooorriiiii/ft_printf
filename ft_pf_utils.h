@@ -6,7 +6,7 @@
 /*   By: ymori <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:53:06 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/18 01:52:11 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/18 02:38:35 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 
 
 /* ft_pf_format.c */
-int character_format(const char **fmt, va_list ap, int flags, int print_len);
-int string_format(const char **fmt, va_list ap, int flags, unsigned int format_num, int print_len);
+int character_format(const char **fmt, va_list ap, int flags);
+int string_format(const char **fmt, va_list ap, int flags, unsigned int format_num);
 int formatting(const char **fmt, va_list ap, int flags, unsigned int format_num, int print_len);
 
 /* ft_pf_parser.c*/
@@ -36,6 +36,6 @@ int is_flag_width_prec(const char c);
 /* ft_output.c */
 int plain_text_print(const char **c, int print_len);
 int percent_printed(const char **fmt);
-void out_putchar(const char *s, int flags, int format_num);
+int out_putchar(const char *s, int flags, int format_num);
 
 #endif 

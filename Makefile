@@ -12,7 +12,6 @@ TEST_OBJS = $(TEST_SRCS:%.c=%.o)
 
 // CFLAGS = -Wall -Wextra -Werror
 
-
 test: $(TEST_OBJS)
 	gcc -o $@ $^
 

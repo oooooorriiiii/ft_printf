@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_pf_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
+/*   By: ymori <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/26 16:27:29 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/18 01:55:17 by ymori            ###   ########.fr       */
+/*   Created: 2021/03/17 16:28:22 by ymori             #+#    #+#             */
+/*   Updated: 2021/03/18 01:54:56 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
+#include "ft_pf_utils.h"
 
-# include <limits.h>
-# include <stdarg.h>
-# include <stdlib.h>
-# include <unistd.h>
+void
+ft_putchar(char c)
+{
+	write(STDOUT_FILENO, &c, sizeof(char));
+}
 
-int		ft_printf(const char *fmt, ...);
-void	ft_putchar(char c);
-int		ft_strlen(const char *s);
+int
+ft_strlen(const char *s)
+{
+	int		count;
 
-#endif
+	count = 0;
+	while (*s)
+	{
+		count++;
+		s++;
+	}
+	return (count);
+}

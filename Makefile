@@ -6,6 +6,7 @@ SRCS = 	ft_printf.c \
 		ft_pf_parser.c \
 		ft_pf_dec.c		\
 		ft_pf_hex.c		\
+		ft_pf_ptr.c		\
 		ft_pf_output.c
 OBJS = $(SRCS:%.c=%.o)	
 

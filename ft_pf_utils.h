@@ -6,7 +6,7 @@
 /*   By: ymori <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:53:06 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/18 17:20:00 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/18 18:20:13 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,9 @@ int dec_format(const char **fmt, va_list sp, int flags, unsigned int format_num)
 
 /* ft_pf_hex.c*/
 int hex_format(const char **fmt, va_list ap, int flags, unsigned int format_num);
+char *to_hex_string(char *buf, unsigned long long n, int flag, int str_len);
+
+/* ft_pf_ptr.c*/
+int ptr_format(const char **fmt, va_list ap, int flags, unsigned int format_num);
 
 #endif 

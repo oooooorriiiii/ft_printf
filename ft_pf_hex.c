@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 16:53:03 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/18 17:46:03 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/18 18:35:31 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ digits_caps_init(char *digits)
 	digits[i] = '\0';
 }
 
-static char
+char
 *to_hex_string(char *buf, unsigned long long n, int flag, int str_len)
 {
 	int		i;
@@ -64,6 +64,11 @@ static char
 		buf[--i] = table[n % 16];
 		n /= 16;
 	}
+	if (flag & ALTFLAG)
+	{
+		buf[--i] = (flag & CAPSFLAG) ? 'X' : 'x';
+		buf[--i] = '0';
+	}
 	return (&buf[i]);	
 }
 
@@ -78,16 +83,8 @@ hex_format(const char **fmt, va_list ap, int flags, unsigned int format_num)
 	out_len = 0;
 	if (**fmt == 'X')
 		flags |= CAPSFLAG;
-	 else if (**fmt == 'p')
-		flags |= ALTFLAG;
 	va_n = va_arg(ap, unsigned int);
 	s = to_hex_string(buf, va_n, flags, sizeof(buf));
-	if (flags & ALTFLAG)
-	{
-		ft_putchar('0');
-		ft_putchar((flags & CAPSFLAG) ? 'X' : 'x');
-		out_len += 2;
-	}
 	out_len += out_putchar(s, flags, format_num);
 	return (out_len);
 }

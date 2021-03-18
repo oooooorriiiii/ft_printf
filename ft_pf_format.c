@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:44:45 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/18 17:24:12 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/18 18:06:33 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,10 @@ num_format(const char **fmt, va_list ap, int flags, unsigned int format_num)
 	out_len = 0;
 	if (**fmt == 'd' || **fmt == 'i' || **fmt == 'u')
 		out_len = dec_format(fmt, ap, flags, format_num);
-	else if (**fmt == 'x' || **fmt == 'X' || **fmt == 'p')
+	else if (**fmt == 'x' || **fmt == 'X')
 		out_len = hex_format(fmt, ap, flags, format_num);
+	else if (**fmt == 'p')
+		out_len = ptr_format(fmt, ap, flags, format_num);
 	return (out_len);
 }
 

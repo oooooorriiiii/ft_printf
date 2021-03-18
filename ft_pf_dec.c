@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:55:57 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/18 18:44:01 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/19 03:05:38 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char
 }
 
 int
-dec_format(const char **fmt, va_list ap, int flags, unsigned int format_num)
+dec_format(const char **fmt, va_list *ap, int flags, int format_num)
 {
 	unsigned long long	va_n;
 	int					out_len;
@@ -53,11 +53,11 @@ dec_format(const char **fmt, va_list ap, int flags, unsigned int format_num)
 	out_len = 0;
 	if (**fmt == 'd' || **fmt == 'i')
 	{
-		va_n = va_arg(ap, int);
+		va_n = va_arg(*ap, int);
 		flags |= SIGNEDFLAG;
 	}
 	else if (**fmt == 'u')
-		va_n = va_arg(ap, unsigned int);
+		va_n = va_arg(*ap, unsigned int);
 	s = to_dec_string(buf, va_n, flags, sizeof(buf));
 
 	out_len += out_putchar(s, flags, format_num);

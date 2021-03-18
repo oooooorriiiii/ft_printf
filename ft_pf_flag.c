@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 23:03:57 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/18 23:04:29 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/19 02:34:00 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ft_pf_utils.h"
 
 int 
-flag_checker(const char **fmt, int flags, unsigned int format_num)
+flag_checker(const char **fmt, int flags, int format_num)
 {
 	if (**fmt == '0' && format_num == 0)
 		flags |= LEADZEROFLAG;

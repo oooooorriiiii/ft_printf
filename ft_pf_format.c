@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:44:45 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/18 18:48:30 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/19 02:50:44 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,23 @@ is_numargument(const char c)
 }
 
 int
-character_format(va_list ap)
+character_format(va_list *ap)
 {
 	unsigned char	uc;
 
-	uc = va_arg(ap, unsigned int);
+	uc = va_arg(*ap, unsigned int);
 	ft_putchar(uc);
 	return (1);
 }
 
 
 int
-string_format(va_list ap, int flags, unsigned int format_num)
+string_format(va_list *ap, int flags, int format_num)
 {
 	const char		*s;
-	unsigned int	out_len;
+	int				out_len;
 
-	s = va_arg(ap, const char *);
+	s = va_arg(*ap, const char *);
 	out_len = 0;
 	if (s == 0)
 	{
@@ -55,7 +55,7 @@ string_format(va_list ap, int flags, unsigned int format_num)
 }
 
 int
-num_format(const char **fmt, va_list ap, int flags, unsigned int format_num) 
+num_format(const char **fmt, va_list *ap, int flags, int format_num) 
 {
 	int		out_len;
 	
@@ -72,7 +72,7 @@ num_format(const char **fmt, va_list ap, int flags, unsigned int format_num)
 /*TODO: It is necessary to allocate a string for display somewhere.*/
 /*using "format_num"*/
 int 
-formatting(const char **fmt, va_list ap, int flags, unsigned int format_num, int print_len)
+formatting(const char **fmt, va_list *ap, int flags, int format_num, int print_len)
 {
 	if (**fmt == 'c')
 	/*If argument is characters*/

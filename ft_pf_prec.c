@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pf_parser.c                                     :+:      :+:    :+:   */
+/*   ft_pf_prec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymori <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/17 16:30:57 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/18 23:04:37 by ymori            ###   ########.fr       */
+/*   Created: 2021/03/18 22:30:04 by ymori             #+#    #+#             */
+/*   Updated: 2021/03/18 22:43:23 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,24 @@
 #include "ft_pf_utils.h"
 
 int
-is_flag_width_prec(const char c)
+prec_checker(const char **fmt, va_list ap, int prec)
 {
-	if (('0' <= c && c <= '9') ||
-		 c == '#' || c == '+' || c == '-' || c == ' ' || c == '.')
-		return (1);
+	(*fmt)++;
+	if (**fmt == '*')
+	{
+		prec = va_arg(ap, int);
+		(*fmt)++;
+	}
 	else
-		return (0);
+	{
+		prec = 0;
+		while ('0' <= **fmt && **fmt <= '9')
+		{
+			prec *= 10;
+			prec += **fmt - '0';
+			(*fmt)++; 
+		}
+	}
+	return (prec);
 }
 

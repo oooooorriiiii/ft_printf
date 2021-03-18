@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pf_parser.c                                     :+:      :+:    :+:   */
+/*   ft_pf_width.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymori <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/17 16:30:57 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/18 23:04:37 by ymori            ###   ########.fr       */
+/*   Created: 2021/03/18 23:02:41 by ymori             #+#    #+#             */
+/*   Updated: 2021/03/18 23:03:28 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,22 @@
 #include "ft_pf_utils.h"
 
 int
-is_flag_width_prec(const char c)
+width_checker(const char **fmt, va_list ap, unsigned int format_num)
 {
-	if (('0' <= c && c <= '9') ||
-		 c == '#' || c == '+' || c == '-' || c == ' ' || c == '.')
-		return (1);
+	if (**fmt == '*')
+	{
+		format_num = va_arg(ap, int);
+		(*fmt)++;
+	}
 	else
-		return (0);
+	{
+		while ('0' <= **fmt && **fmt <= '9')
+		{
+			format_num *= 10;
+			format_num += **fmt - '0';
+			(*fmt)++;
+		}
+	}
+	return (format_num);
 }
 

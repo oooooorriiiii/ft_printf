@@ -6,47 +6,37 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 16:26:55 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/18 20:51:52 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/18 23:26:40 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "ft_pf_utils.h"
 
-#include <stdio.h>
-
 static int
 args_print(const char **fmt, va_list ap, int print_len)
 {
 	int				flags;
 	unsigned int	format_num;
+	int				prec;
 
 	flags = 0;
 	format_num = 0;
-	/*is %*/
+	prec = -1;
 	if (percent_printed(fmt))
 		return (++print_len);
-	/*parse*/
 	while(**fmt != '\0' && is_flag_width_prec(**fmt))
 	{
-		/*flag: 0, -, #*/
 		flags = flag_checker(fmt, flags, format_num);
-		/*prec*/
-		format_num = width_checker(fmt, format_num);
-		/*width: *, .*/
-		/*This is where it gets tricky.*/
-		// width_checker(flags, format_num);
-		// width_checker(flags, format_num);
+		format_num = width_checker(fmt, ap, format_num);
+		if (**fmt == '.')
+			prec = prec_checker(fmt, ap, prec);
 	}
-	/*formatting and printing*/
 	print_len = formatting(fmt, ap, flags, format_num, print_len); 
 	(*fmt)++;
 	return (print_len);
 }
 
-/* 
-** Operate fmt from this function
-*/
 static int
 ft_dprintf(const char *fmt, va_list ap)
 {

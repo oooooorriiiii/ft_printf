@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:55:57 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/18 16:35:57 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/18 17:16:13 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ dec_format(const char **fmt, va_list ap, int flags, unsigned int format_num)
 		va_n = va_arg(ap, unsigned int);
 	s = to_dec_string(buf, va_n, flags, sizeof(buf));
 
-	out_len = out_putchar(s, flags, format_num);
+	out_len += out_putchar(s, flags, format_num);
 	return (out_len);
 }
 

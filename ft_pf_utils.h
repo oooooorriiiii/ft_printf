@@ -6,7 +6,7 @@
 /*   By: ymori <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:53:06 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/18 15:33:12 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/18 17:20:00 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # define LEFTFORMATFLAG	0x00000004
 # define LEADZEROFLAG	0x00000008
 # define SHOWSIGNFLAG	0x00000010
-# define ALTFLAG		0x000000220
+# define ALTFLAG		0x00000020
 
 /* ft_printf.c */
 
@@ -41,5 +41,8 @@ int out_putchar(const char *s, int flags, int format_num);
 
 /* ft_pf_dec.c*/
 int dec_format(const char **fmt, va_list sp, int flags, unsigned int format_num);
+
+/* ft_pf_hex.c*/
+int hex_format(const char **fmt, va_list ap, int flags, unsigned int format_num);
 
 #endif 

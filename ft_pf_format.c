@@ -3,15 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pf_format.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymori <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:44:45 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/18 02:40:55 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/18 16:07:34 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "ft_pf_utils.h"
+
+static int
+is_numargument(const char c)
+{
+	if (c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X' || c == 'p')
+		return (1);
+	else
+		return (0);
+}
 
 int
 character_format(const char **fmt, va_list ap, int flags)
@@ -41,8 +50,21 @@ string_format(const char **fmt, va_list ap, int flags, unsigned int format_num)
 	else
 	{
 		out_len = out_putchar(s, flags, format_num);
-		return (out_len); // It does not work the way it is written.
+		return (out_len);
 	}
+}
+
+int
+num_format(const char **fmt, va_list ap, int flags, unsigned int format_num) 
+{
+	int		out_len;
+	
+	out_len = 0;
+	if (**fmt == 'd' || **fmt == 'i' || **fmt == 'u')
+		out_len = dec_format(fmt, ap, flags, format_num);
+	// else if (**fmt == 'x' || **fmt == 'X' || **fmt == 'p')
+	// 	out_len = hex_format(fmt, ap, flags, format_num);
+	return (out_len);
 }
 
 /*TODO: It is necessary to allocate a string for display somewhere.*/
@@ -57,6 +79,10 @@ formatting(const char **fmt, va_list ap, int flags, unsigned int format_num, int
 	/*If argument is strings*/
 		print_len += string_format(fmt, ap, flags, format_num);
 	/*If argument is d, i, u, x, X, p*/
+	else if (is_numargument(**fmt))
+	{
+		print_len += num_format(fmt, ap, flags, format_num);
+	}
 	return (print_len);
 }
 

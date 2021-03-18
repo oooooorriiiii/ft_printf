@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 16:27:29 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/18 01:55:17 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/18 15:46:33 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+# include <stdio.h> // AAAAAAAAAAAAA
 
 int		ft_printf(const char *fmt, ...);
 void	ft_putchar(char c);

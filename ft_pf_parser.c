@@ -6,7 +6,7 @@
 /*   By: ymori <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:30:57 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/18 18:42:38 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/18 20:50:59 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ flag_checker(const char **fmt, int flags, unsigned int format_num)
 }
 
 int
-prec_checker(const char **fmt, unsigned int format_num)
+width_checker(const char **fmt, unsigned int format_num)
 {
 	while ('0' <= **fmt && **fmt <= '9')
 	{

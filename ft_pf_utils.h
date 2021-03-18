@@ -6,7 +6,7 @@
 /*   By: ymori <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:53:06 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/18 18:20:13 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/18 18:45:14 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@
 
 
 /* ft_pf_format.c */
-int character_format(const char **fmt, va_list ap, int flags);
-int string_format(const char **fmt, va_list ap, int flags, unsigned int format_num);
+int character_format(va_list ap);
+int string_format(va_list ap, int flags, unsigned int format_num);
 int	num_format(const char **fmt, va_list ap, int flags, unsigned int format_num);
 int formatting(const char **fmt, va_list ap, int flags, unsigned int format_num, int print_len);
 
 /* ft_pf_parser.c*/
 int flag_checker(const char **fmt, int flags, unsigned int format_num);
-int prec_checker(const char **fmt, int flags, unsigned int format_num);
+int prec_checker(const char **fmt, unsigned int format_num);
 int is_flag_width_prec(const char c);
 
 /* ft_output.c */
@@ -47,6 +47,6 @@ int hex_format(const char **fmt, va_list ap, int flags, unsigned int format_num)
 char *to_hex_string(char *buf, unsigned long long n, int flag, int str_len);
 
 /* ft_pf_ptr.c*/
-int ptr_format(const char **fmt, va_list ap, int flags, unsigned int format_num);
+int ptr_format(va_list ap, int flags, unsigned int format_num);
 
 #endif 

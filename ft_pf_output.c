@@ -6,7 +6,7 @@
 /*   By: ymori <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:51:22 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/18 02:40:54 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/18 18:46:15 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ percent_printed(const char **fmt)
 int
 out_putchar(const char *s, int flags, int format_num)
 {
-	unsigned int	count;
-	int				str_len;
-	int				out_len;
-	char			outchar;
+	int		count;
+	int		str_len;
+	int		out_len;
+	char	outchar;
 
 	count = 0;
 	out_len = 0;

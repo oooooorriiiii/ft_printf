@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:44:45 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/18 18:06:33 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/18 18:48:30 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ is_numargument(const char c)
 }
 
 int
-character_format(const char **fmt, va_list ap, int flags)
+character_format(va_list ap)
 {
 	unsigned char	uc;
 
@@ -34,7 +34,7 @@ character_format(const char **fmt, va_list ap, int flags)
 
 
 int
-string_format(const char **fmt, va_list ap, int flags, unsigned int format_num)
+string_format(va_list ap, int flags, unsigned int format_num)
 {
 	const char		*s;
 	unsigned int	out_len;
@@ -65,7 +65,7 @@ num_format(const char **fmt, va_list ap, int flags, unsigned int format_num)
 	else if (**fmt == 'x' || **fmt == 'X')
 		out_len = hex_format(fmt, ap, flags, format_num);
 	else if (**fmt == 'p')
-		out_len = ptr_format(fmt, ap, flags, format_num);
+		out_len = ptr_format(ap, flags, format_num);
 	return (out_len);
 }
 
@@ -76,10 +76,10 @@ formatting(const char **fmt, va_list ap, int flags, unsigned int format_num, int
 {
 	if (**fmt == 'c')
 	/*If argument is characters*/
-		print_len += character_format(fmt, ap, flags);
+		print_len += character_format(ap);
 	else if (**fmt == 's')
 	/*If argument is strings*/
-		print_len += string_format(fmt, ap, flags, format_num);
+		print_len += string_format(ap, flags, format_num);
 	/*If argument is d, i, u, x, X, p*/
 	else if (is_numargument(**fmt))
 	{

@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 16:26:55 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/18 01:44:59 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/18 18:47:42 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ args_print(const char **fmt, va_list ap, int print_len)
 		/*This is where it gets tricky.*/
 		// width_checker(flags, format_num);
 		/*prec*/
-		format_num = prec_checker(fmt, flags, format_num);
+		format_num = prec_checker(fmt, format_num);
 	}
 	/*formatting and printing*/
 	print_len = formatting(fmt, ap, flags, format_num, print_len); 

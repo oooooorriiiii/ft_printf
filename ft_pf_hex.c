@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 16:53:03 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/19 02:53:33 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/20 16:26:01 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char
 }
 
 int
-hex_format(const char **fmt, va_list *ap, int flags, int format_num)
+hex_format(const char **fmt, va_list *ap, int flags, int width, int prec)
 {
 	unsigned long long	va_n;
 	int					out_len;
@@ -85,7 +85,8 @@ hex_format(const char **fmt, va_list *ap, int flags, int format_num)
 		flags |= CAPSFLAG;
 	va_n = va_arg(*ap, unsigned int);
 	s = to_hex_string(buf, va_n, flags, sizeof(buf));
-	out_len += out_putchar(s, flags, format_num);
+	out_len += out_putchar(s, flags, width, prec);
 	return (out_len);
 }
+
 

@@ -6,7 +6,7 @@
 /*   By: ymori <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:53:06 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/19 03:04:02 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/20 16:23:58 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 
 /* ft_pf_format.c */
 int character_format(va_list *ap);
-int string_format(va_list *ap, int flags, int format_num);
-int	num_format(const char **fmt, va_list *ap, int flags, int format_num);
-int formatting(const char **fmt, va_list *ap, int flags, int format_num, int print_len);
+int string_format(va_list *ap, int flags, int width, int prec);
+int	num_format(const char **fmt, va_list *ap, int flags, int width, int prec);
+int formatting(const char **fmt, va_list *ap, int flags, int width, int prec, int print_len);
 
 /* ft_pf_parser.c*/
 int is_flag_width_prec(const char c);
@@ -41,16 +41,16 @@ int prec_checker(const char **fmt, va_list *ap, int prec);
 /* ft_output.c */
 int plain_text_print(const char **c, int print_len);
 int percent_printed(const char **fmt);
-int out_putchar(const char *s, int flags, int format_num);
+int out_putchar(const char *s, int flags, int width, int prec);
 
 /* ft_pf_dec.c*/
-int dec_format(const char **fmt, va_list *ap, int flags, int format_num);
+int dec_format(const char **fmt, va_list *ap, int flags, int width, int prec);
 
 /* ft_pf_hex.c*/
-int hex_format(const char **fmt, va_list *ap, int flags, int format_num);
+int hex_format(const char **fmt, va_list *ap, int flags, int width, int prec);
 char *to_hex_string(char *buf, unsigned long long n, int flag, int str_len);
 
 /* ft_pf_ptr.c*/
-int ptr_format(va_list *ap, int flags, int format_num);
+int ptr_format(va_list *ap, int flags, int width, int prec);
 
 #endif 

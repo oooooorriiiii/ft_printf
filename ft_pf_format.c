@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:44:45 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/19 02:50:44 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/20 15:42:31 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ character_format(va_list *ap)
 
 
 int
-string_format(va_list *ap, int flags, int format_num)
+string_format(va_list *ap, int flags, int width, int prec)
 {
 	const char		*s;
 	int				out_len;
@@ -44,46 +44,43 @@ string_format(va_list *ap, int flags, int format_num)
 	if (s == 0)
 	{
 		s = "(null)";
-		out_putchar(s, flags, format_num);
+		out_putchar(s, flags, width, prec);
 		return (out_len);
 	}
 	else
 	{
-		out_len = out_putchar(s, flags, format_num);
+		out_len = out_putchar(s, flags, width, prec);
 		return (out_len);
 	}
 }
 
 int
-num_format(const char **fmt, va_list *ap, int flags, int format_num) 
+num_format(const char **fmt, va_list *ap, int flags, int width, int prec) 
 {
 	int		out_len;
 	
 	out_len = 0;
 	if (**fmt == 'd' || **fmt == 'i' || **fmt == 'u')
-		out_len = dec_format(fmt, ap, flags, format_num);
+		out_len = dec_format(fmt, ap, flags, width, prec);
 	else if (**fmt == 'x' || **fmt == 'X')
-		out_len = hex_format(fmt, ap, flags, format_num);
+		out_len = hex_format(fmt, ap, flags, width, prec);
 	else if (**fmt == 'p')
-		out_len = ptr_format(ap, flags, format_num);
+		out_len = ptr_format(ap, flags, width, prec);
 	return (out_len);
 }
 
-/*TODO: It is necessary to allocate a string for display somewhere.*/
-/*using "format_num"*/
+// TODO: Reduce the number of arguments
 int 
-formatting(const char **fmt, va_list *ap, int flags, int format_num, int print_len)
+formatting(const char **fmt, va_list *ap, int flags,
+            int width, int prec,  int print_len)
 {
 	if (**fmt == 'c')
-	/*If argument is characters*/
 		print_len += character_format(ap);
 	else if (**fmt == 's')
-	/*If argument is strings*/
-		print_len += string_format(ap, flags, format_num);
-	/*If argument is d, i, u, x, X, p*/
+		print_len += string_format(ap, flags, width, prec);
 	else if (is_numargument(**fmt))
 	{
-		print_len += num_format(fmt, ap, flags, format_num);
+		print_len += num_format(fmt, ap, flags, width, prec);
 	}
 	return (print_len);
 }

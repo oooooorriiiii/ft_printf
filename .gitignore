@@ -28,9 +28,17 @@
 *.idb
 *.pdb
 
-# vscode
-.vscode
-
 # tests
 tests/
 test
+
+# vscode
+.vscode
+
+# CLion
+.gradle
+
+# CMake
+CMakeLists.txt
+cmake-build-debug/
+.idea

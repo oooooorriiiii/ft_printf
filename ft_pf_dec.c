@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:55:57 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/20 16:25:03 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/23 02:24:35 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,15 @@ dec_format(const char **fmt, va_list *ap, int flags, int width, int prec)
 	}
 	else if (**fmt == 'u')
 		va_n = va_arg(*ap, unsigned int);
-	s = to_dec_string(buf, va_n, flags, sizeof(buf));
-
-	out_len += out_putchar(s, flags, width, prec);
+	/* 
+	** It does not consider shat happens when the precision and
+	** width are specified at the same time.
+	*/
+	if (!(va_n == 0 && width == 0) || !(va_n == 0 && prec == 0))
+	{
+		s = to_dec_string(buf, va_n, flags, sizeof(buf));
+		out_len += out_putchar(s, flags, width, prec);
+	}
 	return (out_len);
 }
 

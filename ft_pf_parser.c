@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pf_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymori <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:30:57 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/23 00:32:58 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/23 20:55:13 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 #include "ft_pf_utils.h"
 
 int
-is_flag_width_prec(const char c)
+	is_flag_width_prec(const char c)
 {
 	if (('0' <= c && c <= '9') ||
-		 c == '#' || c == '+' || c == '-' || c == ' ' || c == '.' || c == '*')
+		c == '#' || c == '+' || c == '-' || c == ' ' || c == '.' || c == '*')
 		return (1);
 	else
 		return (0);
 }
-

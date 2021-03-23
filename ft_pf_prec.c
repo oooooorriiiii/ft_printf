@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 22:30:04 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/19 02:45:23 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/23 20:56:19 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ft_pf_utils.h"
 
 int
-prec_checker(const char **fmt, va_list *ap, int prec)
+	prec_checker(const char **fmt, va_list *ap, int prec)
 {
 	(*fmt)++;
 	if (**fmt == '*')
@@ -29,9 +29,8 @@ prec_checker(const char **fmt, va_list *ap, int prec)
 		{
 			prec *= 10;
 			prec += **fmt - '0';
-			(*fmt)++; 
+			(*fmt)++;
 		}
 	}
 	return (prec);
 }
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pf_output.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymori <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:51:22 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/23 18:41:47 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/23 21:18:46 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ft_pf_utils.h"
 
 int
-plain_text_print(const char **c, int print_len)
+	plain_text_print(const char **c, int print_len)
 {
 	ft_putchar((const char)(**c));
 	(*c)++;
@@ -22,7 +22,7 @@ plain_text_print(const char **c, int print_len)
 }
 
 int
-percent_printed(const char **fmt)
+	percent_printed(const char **fmt)
 {
 	if (**fmt == '%')
 	{
@@ -35,7 +35,7 @@ percent_printed(const char **fmt)
 }
 
 int
-out_putchar(const char *s, int flags, int width, int prec)
+	out_putchar(const char *s, int flags, int width, int prec)
 {
 	int		count;
 	int		str_len;
@@ -45,7 +45,7 @@ out_putchar(const char *s, int flags, int width, int prec)
 	count = 0;
 	out_len = 0;
 	str_len = ft_strlen(s);
-	pad_char= (prec < 0 && (flags & LEADZEROFLAG)) ? '0' : ' ';
+	pad_char = (prec < 0 && (flags & LEADZEROFLAG)) ? '0' : ' ';
 	if (prec >= width)
 		width = prec;
 	if (prec > 0 && str_len >= prec)
@@ -92,7 +92,5 @@ out_putchar(const char *s, int flags, int width, int prec)
 			out_len++;
 		}
 	}
-
 	return (out_len);
-}		
-
+}

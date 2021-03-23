@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 18:06:58 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/20 16:26:41 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/23 20:53:28 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ft_pf_utils.h"
 
 int
-ptr_format(va_list *ap, int flags, int width, int prec)
+	ptr_format(va_list *ap, int flags, int width, int prec)
 {
 	unsigned long long	va_ptr_n;
 	int					out_len;

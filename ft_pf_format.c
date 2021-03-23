@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:44:45 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/20 15:42:31 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/23 21:18:31 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ft_pf_utils.h"
 
 static int
-is_numargument(const char c)
+	is_numargument(const char c)
 {
 	if (c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X' || c == 'p')
 		return (1);
@@ -23,7 +23,7 @@ is_numargument(const char c)
 }
 
 int
-character_format(va_list *ap)
+	character_format(va_list *ap)
 {
 	unsigned char	uc;
 
@@ -32,9 +32,8 @@ character_format(va_list *ap)
 	return (1);
 }
 
-
 int
-string_format(va_list *ap, int flags, int width, int prec)
+	string_format(va_list *ap, int flags, int width, int prec)
 {
 	const char		*s;
 	int				out_len;
@@ -55,10 +54,10 @@ string_format(va_list *ap, int flags, int width, int prec)
 }
 
 int
-num_format(const char **fmt, va_list *ap, int flags, int width, int prec) 
+	num_format(const char **fmt, va_list *ap, int flags, int width, int prec)
 {
 	int		out_len;
-	
+
 	out_len = 0;
 	if (**fmt == 'd' || **fmt == 'i' || **fmt == 'u')
 		out_len = dec_format(fmt, ap, flags, width, prec);
@@ -69,10 +68,13 @@ num_format(const char **fmt, va_list *ap, int flags, int width, int prec)
 	return (out_len);
 }
 
-// TODO: Reduce the number of arguments
-int 
-formatting(const char **fmt, va_list *ap, int flags,
-            int width, int prec,  int print_len)
+/*
+** TODO: Reduce the number of arguments
+*/
+
+int
+	formatting(const char **fmt, va_list *ap, int flags,
+				int width, int prec, int print_len)
 {
 	if (**fmt == 'c')
 		print_len += character_format(ap);
@@ -84,4 +86,3 @@ formatting(const char **fmt, va_list *ap, int flags,
 	}
 	return (print_len);
 }
-

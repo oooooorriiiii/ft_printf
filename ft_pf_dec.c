@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:55:57 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/23 18:45:30 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/23 21:16:45 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ft_pf_utils.h"
 
 static char
-*to_dec_string(char *buf, unsigned long long n, int flag, int width, int prec, int str_len)
+	*to_dec_string(char *buf, unsigned long long n, int flag, int width, int prec, int str_len)
 {
 	int		i;
 	int		neg;
@@ -58,9 +58,13 @@ static char
 		buf[--i] = '+';
 	return (&buf[i]);
 }
+/*
+** It does not consider shat happens when the precision and
+** width are specified at the same time.
+*/
 
 int
-dec_format(const char **fmt, va_list *ap, int flags, int width, int prec)
+	dec_format(const char **fmt, va_list *ap, int flags, int width, int prec)
 {
 	unsigned long long	va_n;
 	int					out_len;
@@ -76,10 +80,6 @@ dec_format(const char **fmt, va_list *ap, int flags, int width, int prec)
 	}
 	else if (**fmt == 'u')
 		va_n = va_arg(*ap, unsigned int);
-	/* 
-	** It does not consider shat happens when the precision and
-	** width are specified at the same time.
-	*/
 	if (!(va_n == 0 && prec == 0))
 	{
 		s = to_dec_string(buf, va_n, flags, width, prec, sizeof(buf));
@@ -87,7 +87,7 @@ dec_format(const char **fmt, va_list *ap, int flags, int width, int prec)
 	}
 	else
 	{
-		while (width-- > 0)	
+		while (width-- > 0)
 		{
 			ft_putchar(' ');
 			out_len++;
@@ -95,4 +95,3 @@ dec_format(const char **fmt, va_list *ap, int flags, int width, int prec)
 	}
 	return (out_len);
 }
-

@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 16:26:55 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/23 18:36:33 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/23 18:57:33 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ft_pf_utils.h"
 
 static int
-args_print(const char **fmt, va_list *ap, int print_len)
+	args_print(const char **fmt, va_list *ap, int print_len)
 {
 	int		flags;
 	int		width;
@@ -25,7 +25,7 @@ args_print(const char **fmt, va_list *ap, int print_len)
 	prec = -1;
 	if (percent_printed(fmt))
 		return (++print_len);
-	while(**fmt != '\0' && is_flag_width_prec(**fmt))
+	while (**fmt != '\0' && is_flag_width_prec(**fmt))
 	{
 		flags = flag_checker(fmt, flags, width);
 		width = width_checker(fmt, ap, &flags, width);
@@ -38,7 +38,7 @@ args_print(const char **fmt, va_list *ap, int print_len)
 }
 
 static int
-ft_dprintf(const char *fmt, va_list *ap)
+	ft_dprintf(const char *fmt, va_list *ap)
 {
 	int		print_len;
 
@@ -57,7 +57,7 @@ ft_dprintf(const char *fmt, va_list *ap)
 }
 
 int
-ft_printf(const char *fmt, ...)
+	ft_printf(const char *fmt, ...)
 {
 	int			print_len;
 	va_list		ap;
@@ -68,4 +68,3 @@ ft_printf(const char *fmt, ...)
 	va_end(ap);
 	return (print_len);
 }
-

@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 16:26:55 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/20 15:41:03 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/23 18:36:33 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ args_print(const char **fmt, va_list *ap, int print_len)
 	while(**fmt != '\0' && is_flag_width_prec(**fmt))
 	{
 		flags = flag_checker(fmt, flags, width);
-		width = width_checker(fmt, ap, width);
+		width = width_checker(fmt, ap, &flags, width);
 		if (**fmt == '.')
 			prec = prec_checker(fmt, ap, prec);
 	}
@@ -40,7 +40,7 @@ args_print(const char **fmt, va_list *ap, int print_len)
 static int
 ft_dprintf(const char *fmt, va_list *ap)
 {
-	int			print_len;
+	int		print_len;
 
 	print_len = 0;
 	while (*fmt != '\0')

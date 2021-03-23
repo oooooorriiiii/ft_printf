@@ -6,7 +6,7 @@
 /*   By: ymori <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:53:06 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/20 16:23:58 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/23 18:36:13 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int is_flag_width_prec(const char c);
 int flag_checker(const char **fmt, int flags, int width);
 
 /* ft_pf_width.c*/
-int width_checker(const char **fmt, va_list *ap, int width);
+int width_checker(const char **fmt, va_list *ap, int *flags, int width);
 
 /* ft_pf_prec.c*/
 int prec_checker(const char **fmt, va_list *ap, int prec);

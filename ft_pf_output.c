@@ -6,7 +6,7 @@
 /*   By: ymori <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:51:22 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/23 00:55:55 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/23 18:41:47 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,7 @@ out_putchar(const char *s, int flags, int width, int prec)
 	count = 0;
 	out_len = 0;
 	str_len = ft_strlen(s);
-	/* flag is '0' */
-	pad_char= (flags & LEADZEROFLAG) ? '0' : ' ';
-	/* flag is '-' */
-	/* TODO: All this implememtation may need to be changed. */
-	/*
-	** if (prec >= width)
-	**  width = prec;
-	** if (prec > 0 && str_len >= prec)
-	**  prec = strlen;
-	** if (str_len >= width)
-	**  width = strlen;
-	**
-	*/
+	pad_char= (prec < 0 && (flags & LEADZEROFLAG)) ? '0' : ' ';
 	if (prec >= width)
 		width = prec;
 	if (prec > 0 && str_len >= prec)
@@ -66,7 +54,7 @@ out_putchar(const char *s, int flags, int width, int prec)
 		width = str_len;
 	if ((flags & LEFTFORMATFLAG))
 	{
-		while (prec-- > out_len)
+		while (prec-- > str_len)
 		{
 			ft_putchar('0');
 			count++;
@@ -80,7 +68,7 @@ out_putchar(const char *s, int flags, int width, int prec)
 		}
 		while (width > count)
 		{
-			ft_putchar(pad_char);
+			ft_putchar(' ');
 			out_len++;
 			width--;
 		}

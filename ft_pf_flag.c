@@ -13,7 +13,7 @@
 #include "ft_printf.h"
 #include "ft_pf_utils.h"
 
-int 
+int
 flag_checker(const char **fmt, int flags, int format_num)
 {
 	if (**fmt == '0' && format_num == 0)
@@ -25,8 +25,7 @@ flag_checker(const char **fmt, int flags, int format_num)
 	else if (**fmt == '#')
 		flags |= ALTFLAG;
 	else
-		return flags;	
+		return flags;
 	(*fmt)++;
 	return flags;
 }
-

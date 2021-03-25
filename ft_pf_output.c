@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:51:22 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/25 17:50:10 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/25 23:30:57 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,64 @@ int
 	}
 	else
 		return (0);
+}
+
+int
+	out_str(const char *s, t_format *spc)
+{
+	int		out_len;
+	int		fmt_len;
+	int		count;
+	int		width;
+	int		prec;
+
+	out_len = 0;
+	count = 0;
+	width = spc->width;
+	prec = spc->prec;
+	fmt_len = (prec > 0 && ft_strlen(s) >= prec) ? prec : ft_strlen(s);
+	if (prec == 0)
+	{
+		while (width-- > 0)
+		{
+			ft_putchar(' ');
+			out_len++;
+		}
+		return (out_len);
+	}
+	while (width-- > fmt_len && !(spc->flags & LEFTFORMATFLAG))
+	{
+		ft_putchar(' ');
+		count++;
+		out_len++;
+	}
+	if (prec < 0)
+	{
+		while (*s != 0)
+		{
+			ft_putchar(*s);
+			out_len++;
+			count++;
+			s++;
+		}
+	}
+	else
+	{
+		while (*s != 0 && prec-- > 0)
+		{
+			ft_putchar(*s);
+			out_len++;
+			count++;
+			s++;
+		}
+	}
+	while (count < spc->width && (spc->flags & LEFTFORMATFLAG))
+	{
+		ft_putchar(' ');
+		out_len++;
+		count++;
+	}
+	return (out_len);
 }
 
 int

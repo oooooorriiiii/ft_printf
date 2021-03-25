@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:44:45 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/25 17:52:11 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/25 22:57:44 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ int
 	if (s == 0)
 	{
 		s = "(null)";
-		out_putchar(s, spc);
+		out_len = out_str(s, spc);
 		return (out_len);
 	}
 	else
 	{
-		out_len = out_putchar(s, spc);
+		out_len = out_str(s, spc);
 		return (out_len);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ymori <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:53:06 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/25 17:08:20 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/25 21:48:41 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int formatting(const char **fmt, va_list *ap, t_format *spc, int print_len);
 /* ft_output.c */
 int plain_text_print(const char **c, int print_len);
 int percent_printed(const char **fmt);
+int	out_str(const char *s, t_format *spc);
 int out_putchar(const char *s, t_format *spc);
 
 /* ft_pf_dec.c*/

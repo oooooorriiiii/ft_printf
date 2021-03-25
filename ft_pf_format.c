@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:44:45 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/23 21:18:31 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/25 00:46:18 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int
 }
 
 int
-	string_format(va_list *ap, int flags, int width, int prec)
+	string_format(va_list *ap, t_format *spc)
 {
 	const char		*s;
 	int				out_len;
@@ -43,46 +43,40 @@ int
 	if (s == 0)
 	{
 		s = "(null)";
-		out_putchar(s, flags, width, prec);
+		out_putchar(s, spc);
 		return (out_len);
 	}
 	else
 	{
-		out_len = out_putchar(s, flags, width, prec);
+		out_len = out_putchar(s, spc);
 		return (out_len);
 	}
 }
 
 int
-	num_format(const char **fmt, va_list *ap, int flags, int width, int prec)
+	num_format(const char **fmt, va_list *ap, t_format *spc)
 {
 	int		out_len;
 
 	out_len = 0;
 	if (**fmt == 'd' || **fmt == 'i' || **fmt == 'u')
-		out_len = dec_format(fmt, ap, flags, width, prec);
+		out_len = dec_format(fmt, ap, spc);
 	else if (**fmt == 'x' || **fmt == 'X')
-		out_len = hex_format(fmt, ap, flags, width, prec);
+		out_len = hex_format(fmt, ap, spc);
 	else if (**fmt == 'p')
-		out_len = ptr_format(ap, flags, width, prec);
+		out_len = ptr_format(ap, spc);
 	return (out_len);
 }
 
-/*
-** TODO: Reduce the number of arguments
-*/
-
 int
-	formatting(const char **fmt, va_list *ap, int flags,
-				int width, int prec, int print_len)
+	formatting(const char **fmt, va_list *ap, t_format *spc, int print_len)
 {
 	if (**fmt == 'c')
 		print_len += character_format(ap);
 	else if (**fmt == 's')
-		print_len += string_format(ap, flags, width, prec);
+		print_len += string_format(ap, spc);
 	else if (is_numargument(**fmt))
-	{
-		print_len += num_format(fmt, ap, flags, width, prec);
-	}
+		print_len += num_format(fmt, ap, spc);
 	return (print_len);
 }
+

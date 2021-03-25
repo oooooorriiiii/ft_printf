@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 16:53:03 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/23 21:02:40 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/25 16:57:06 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char
 */
 
 int
-	hex_format(const char **fmt, va_list *ap, int flags, int width, int prec)
+	hex_format(const char **fmt, va_list *ap, t_format *spc)
 {
 	unsigned long long	va_n;
 	int					out_len;
@@ -84,16 +84,16 @@ int
 
 	out_len = 0;
 	if (**fmt == 'X')
-		flags |= CAPSFLAG;
+		spc->flags |= CAPSFLAG;
 	va_n = va_arg(*ap, unsigned int);
-	if (!(va_n == 0 && prec == 0))
+	if (!(va_n == 0 && spc->prec == 0))
 	{
-		s = to_hex_string(buf, va_n, flags, sizeof(buf));
-		out_len += out_putchar(s, flags, width, prec);
+		s = to_hex_string(buf, va_n, spc->flags, sizeof(buf));
+		out_len += out_putchar(s, spc);
 	}
 	else
 	{
-		while (width-- > 0)
+		while (spc->width-- > 0)
 		{
 			ft_putchar(' ');
 			out_len++;
@@ -101,3 +101,4 @@ int
 	}
 	return (out_len);
 }
+

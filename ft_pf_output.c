@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:51:22 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/23 21:18:46 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/23 23:51:08 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int
 }
 
 int
-	out_putchar(const char *s, int flags, int width, int prec)
+	out_putchar(const char *s, t_format *spc)
 {
 	int		count;
 	int		str_len;
@@ -45,16 +45,16 @@ int
 	count = 0;
 	out_len = 0;
 	str_len = ft_strlen(s);
-	pad_char = (prec < 0 && (flags & LEADZEROFLAG)) ? '0' : ' ';
-	if (prec >= width)
-		width = prec;
-	if (prec > 0 && str_len >= prec)
-		prec = str_len;
-	if (str_len >= width)
-		width = str_len;
-	if ((flags & LEFTFORMATFLAG))
+	pad_char = (spc->prec < 0 && (spc->flags & LEADZEROFLAG)) ? '0' : ' ';
+	if (spc->prec >= spc->width)
+		spc->width = spc->prec;
+	if (spc->prec > 0 && str_len >= spc->prec)
+		spc->prec = str_len;
+	if (str_len >= spc->width)
+		spc->width = str_len;
+	if ((spc->flags & LEFTFORMATFLAG))
 	{
-		while (prec-- > str_len)
+		while (spc->prec-- > str_len)
 		{
 			ft_putchar('0');
 			count++;
@@ -66,22 +66,22 @@ int
 			count++;
 			out_len++;
 		}
-		while (width > count)
+		while (spc->width > count)
 		{
 			ft_putchar(' ');
 			out_len++;
-			width--;
+			spc->width--;
 		}
 	}
 	else
 	{
-		while (width > prec && width > str_len)
+		while (spc->width > spc->prec && spc->width > str_len)
 		{
 			ft_putchar(pad_char);
 			out_len++;
-			width--;
+			spc->width--;
 		}
-		while (prec-- > str_len)
+		while (spc->prec-- > str_len)
 		{
 			ft_putchar('0');
 			out_len++;
@@ -94,3 +94,4 @@ int
 	}
 	return (out_len);
 }
+

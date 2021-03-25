@@ -6,36 +6,13 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 16:26:55 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/23 18:57:33 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/25 16:10:42 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "ft_pf_utils.h"
 
-static int
-	args_print(const char **fmt, va_list *ap, int print_len)
-{
-	int		flags;
-	int		width;
-	int		prec;
-
-	flags = 0;
-	width = 0;
-	prec = -1;
-	if (percent_printed(fmt))
-		return (++print_len);
-	while (**fmt != '\0' && is_flag_width_prec(**fmt))
-	{
-		flags = flag_checker(fmt, flags, width);
-		width = width_checker(fmt, ap, &flags, width);
-		if (**fmt == '.')
-			prec = prec_checker(fmt, ap, prec);
-	}
-	print_len = formatting(fmt, ap, flags, width, prec, print_len);
-	(*fmt)++;
-	return (print_len);
-}
 
 static int
 	ft_dprintf(const char *fmt, va_list *ap)
@@ -50,7 +27,7 @@ static int
 		else
 		{
 			fmt++;
-			print_len = args_print(&fmt, ap, print_len);
+			print_len = arg_print(&fmt, ap, print_len);
 		}
 	}
 	return (print_len);
@@ -68,3 +45,4 @@ int
 	va_end(ap);
 	return (print_len);
 }
+

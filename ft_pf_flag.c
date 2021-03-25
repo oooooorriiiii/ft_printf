@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 23:03:57 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/23 21:12:08 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/23 23:15:28 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "ft_pf_utils.h"
 
 int
-	flag_checker(const char **fmt, int flags, int format_num)
+	flag_checker(const char **fmt, int flags, int width)
 {
-	if (**fmt == '0' && format_num == 0)
+	if (**fmt == '0' &&  width == 0)
 		flags |= LEADZEROFLAG;
 	else if (**fmt == '-')
 		flags |= LEFTFORMATFLAG;
@@ -29,3 +29,4 @@ int
 	(*fmt)++;
 	return (flags);
 }
+

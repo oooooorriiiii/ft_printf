@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 18:06:58 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/23 20:53:28 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/25 17:05:29 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ft_pf_utils.h"
 
 int
-	ptr_format(va_list *ap, int flags, int width, int prec)
+	ptr_format(va_list *ap, t_format *spc)
 {
 	unsigned long long	va_ptr_n;
 	int					out_len;
@@ -22,9 +22,10 @@ int
 	char				*s;
 
 	out_len = 0;
-	flags |= ALTFLAG;
+	spc->flags |= ALTFLAG;
 	va_ptr_n = (unsigned long long)va_arg(*ap, void *);
-	s = to_hex_string(buf, va_ptr_n, flags, sizeof(buf));
-	out_len += out_putchar(s, flags, width, prec);
+	s = to_hex_string(buf, va_ptr_n, spc->flags, sizeof(buf));
+	out_len += out_putchar(s, spc);
 	return (out_len);
 }
+

@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:55:57 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/25 16:20:41 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/25 17:55:08 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static char
 	}
 	if (neg)
 	{
-		if ((spc.flags & LEADZEROFLAG) && spc.prec < 0 && !(spc.flags & LEFTFORMATFLAG))
+		if ((spc.flags & LEADZEROFLAG) && spc.prec < 0
+				&& !(spc.flags & LEFTFORMATFLAG))
 		{
 			while (spc.width-- > count_for_width + 1)
 			{
@@ -58,10 +59,6 @@ static char
 		buf[--i] = '+';
 	return (&buf[i]);
 }
-
-/*
-** 
-*/
 
 int
 	dec_format(const char **fmt, va_list *ap, t_format *spc)
@@ -95,4 +92,3 @@ int
 	}
 	return (out_len);
 }
-

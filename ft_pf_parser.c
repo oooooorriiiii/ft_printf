@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:30:57 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/25 17:08:26 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/25 17:49:28 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@ static int
 		return (0);
 }
 
-
 /*
 ** spc structure is complete within this function.
-** width_checker returns spc structure, because it may add flags. 
+** width_checker returns spc structure, because it may add flags.
 */
 
 int
@@ -50,4 +49,3 @@ int
 	(*fmt)++;
 	return (print_len);
 }
-

@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 23:03:57 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/23 23:15:28 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/25 17:54:12 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int
 	flag_checker(const char **fmt, int flags, int width)
 {
-	if (**fmt == '0' &&  width == 0)
+	if (**fmt == '0' && width == 0)
 		flags |= LEADZEROFLAG;
 	else if (**fmt == '-')
 		flags |= LEFTFORMATFLAG;
@@ -29,4 +29,3 @@ int
 	(*fmt)++;
 	return (flags);
 }
-

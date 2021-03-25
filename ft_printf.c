@@ -6,13 +6,12 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 16:26:55 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/25 16:10:42 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/25 17:51:49 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "ft_pf_utils.h"
-
 
 static int
 	ft_dprintf(const char *fmt, va_list *ap)
@@ -45,4 +44,3 @@ int
 	va_end(ap);
 	return (print_len);
 }
-

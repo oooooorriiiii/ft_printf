@@ -6,7 +6,7 @@
 /*   By: ymori <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:53:06 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/25 21:48:41 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/25 23:56:50 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_format width_checker(const char **fmt, va_list *ap, t_format spc);
 int prec_checker(const char **fmt, va_list *ap, int prec);
 
 /* ft_pf_format.c */
-int character_format(va_list *ap);
+int character_format(va_list *ap, t_format *spc);
 int string_format(va_list *ap, t_format *spc);
 int	num_format(const char **fmt, va_list *ap, t_format *spc);
 int formatting(const char **fmt, va_list *ap, t_format *spc, int print_len);
@@ -48,6 +48,7 @@ int formatting(const char **fmt, va_list *ap, t_format *spc, int print_len);
 /* ft_output.c */
 int plain_text_print(const char **c, int print_len);
 int percent_printed(const char **fmt);
+int	out_char(const char c, t_format *spc);
 int	out_str(const char *s, t_format *spc);
 int out_putchar(const char *s, t_format *spc);
 

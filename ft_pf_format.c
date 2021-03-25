@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:44:45 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/25 22:57:44 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/25 23:57:29 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,15 @@ static int
 }
 
 int
-	character_format(va_list *ap)
+	character_format(va_list *ap, t_format *spc)
 {
 	unsigned char	uc;
+	int				out_len;
 
+	out_len = 0;
 	uc = va_arg(*ap, unsigned int);
-	ft_putchar(uc);
-	return (1);
+	out_len = out_char(uc, spc);
+	return (out_len);
 }
 
 int
@@ -72,7 +74,7 @@ int
 	formatting(const char **fmt, va_list *ap, t_format *spc, int print_len)
 {
 	if (**fmt == 'c')
-		print_len += character_format(ap);
+		print_len += character_format(ap, spc);
 	else if (**fmt == 's')
 		print_len += string_format(ap, spc);
 	else if (is_numargument(**fmt))

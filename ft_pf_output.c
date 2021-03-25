@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:51:22 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/25 23:30:57 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/26 00:31:29 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,34 @@ int
 	}
 	else
 		return (0);
+}
+
+int
+	out_char(const char c, t_format *spc)
+{
+	int		out_len;
+	int		count;
+	int		width;
+
+	out_len = 0;
+	count = 0;
+	width = spc->width;
+	while (width-- > 1 && !(spc->flags & LEFTFORMATFLAG))
+	{
+		ft_putchar(' ');	
+		out_len++;
+		count++;
+	}
+	ft_putchar(c);
+	count++;
+	out_len++;
+	while (count < spc->width && (spc->flags & LEFTFORMATFLAG))
+	{
+		ft_putchar(' ');	
+		out_len++;
+		count++;
+	}
+	return (out_len);
 }
 
 int

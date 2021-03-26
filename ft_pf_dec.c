@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:55:57 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/25 17:55:08 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/27 02:38:18 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int
 	else
 	{
 		s = to_dec_string(buf, va_n, *spc, sizeof(buf));
-		out_len += out_putchar(s, spc);
+		out_len += out_nbr(s, spc);
 	}
 	return (out_len);
 }

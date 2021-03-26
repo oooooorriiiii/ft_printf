@@ -6,7 +6,7 @@
 /*   By: ymori <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:53:06 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/25 23:56:50 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/27 02:25:32 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,6 @@ int string_format(va_list *ap, t_format *spc);
 int	num_format(const char **fmt, va_list *ap, t_format *spc);
 int formatting(const char **fmt, va_list *ap, t_format *spc, int print_len);
 
-/* ft_output.c */
-int plain_text_print(const char **c, int print_len);
-int percent_printed(const char **fmt);
-int	out_char(const char c, t_format *spc);
-int	out_str(const char *s, t_format *spc);
-int out_putchar(const char *s, t_format *spc);
-
 /* ft_pf_dec.c*/
 int dec_format(const char **fmt, va_list *ap, t_format *spc);
 
@@ -61,5 +54,14 @@ char *to_hex_string(char *buf, unsigned long long n, int flag, int str_len);
 
 /* ft_pf_ptr.c*/
 int ptr_format(va_list *ap, t_format *spc);
+
+/* ft_pf_out_char_str.c */
+int plain_text_print(const char **c, int print_len);
+int percent_printed(const char **fmt);
+int	out_char(const char c, t_format *spc);
+int	out_str(const char *s, t_format *spc);
+
+/* ft_pf_out_nbr.c */
+int out_nbr(const char *s, t_format *spc);
 
 #endif 

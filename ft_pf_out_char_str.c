@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pf_output.c                                     :+:      :+:    :+:   */
+/*   ft_pf_out_char_str.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:51:22 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/26 00:31:29 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/27 02:49:08 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int
 	width = spc->width;
 	while (width-- > 1 && !(spc->flags & LEFTFORMATFLAG))
 	{
-		ft_putchar(' ');	
+		ft_putchar(' ');
 		out_len++;
 		count++;
 	}
@@ -55,7 +55,7 @@ int
 	out_len++;
 	while (count < spc->width && (spc->flags & LEFTFORMATFLAG))
 	{
-		ft_putchar(' ');	
+		ft_putchar(' ');
 		out_len++;
 		count++;
 	}
@@ -116,67 +116,6 @@ int
 		ft_putchar(' ');
 		out_len++;
 		count++;
-	}
-	return (out_len);
-}
-
-int
-	out_putchar(const char *s, t_format *spc)
-{
-	int		count;
-	int		str_len;
-	int		out_len;
-	char	pad_char;
-
-	count = 0;
-	out_len = 0;
-	str_len = ft_strlen(s);
-	pad_char = (spc->prec < 0 && (spc->flags & LEADZEROFLAG)) ? '0' : ' ';
-	if (spc->prec >= spc->width)
-		spc->width = spc->prec;
-	if (spc->prec > 0 && str_len >= spc->prec)
-		spc->prec = str_len;
-	if (str_len >= spc->width)
-		spc->width = str_len;
-	if ((spc->flags & LEFTFORMATFLAG))
-	{
-		while (spc->prec-- > str_len)
-		{
-			ft_putchar('0');
-			count++;
-			out_len++;
-		}
-		while (*s != 0)
-		{
-			ft_putchar(*s++);
-			count++;
-			out_len++;
-		}
-		while (spc->width > count)
-		{
-			ft_putchar(' ');
-			out_len++;
-			spc->width--;
-		}
-	}
-	else
-	{
-		while (spc->width > spc->prec && spc->width > str_len)
-		{
-			ft_putchar(pad_char);
-			out_len++;
-			spc->width--;
-		}
-		while (spc->prec-- > str_len)
-		{
-			ft_putchar('0');
-			out_len++;
-		}
-		while (*s != 0)
-		{
-			ft_putchar(*s++);
-			out_len++;
-		}
 	}
 	return (out_len);
 }

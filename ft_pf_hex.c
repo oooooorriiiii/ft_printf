@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 16:53:03 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/25 17:52:05 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/27 02:38:46 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int
 	if (!(va_n == 0 && spc->prec == 0))
 	{
 		s = to_hex_string(buf, va_n, spc->flags, sizeof(buf));
-		out_len += out_putchar(s, spc);
+		out_len += out_nbr(s, spc);
 	}
 	else
 	{

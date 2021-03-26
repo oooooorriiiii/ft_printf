@@ -13,7 +13,8 @@ SRCS = 	ft_printf.c \
 		ft_pf_dec.c		\
 		ft_pf_hex.c		\
 		ft_pf_ptr.c		\
-		ft_pf_output.c
+		ft_pf_out_char_str.c \
+		ft_pf_out_nbr.c
 OBJS = $(SRCS:%.c=%.o)	
 
 TEST_SRCS = $(SRCS) tests/test.c

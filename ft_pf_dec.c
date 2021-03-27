@@ -6,30 +6,49 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:55:57 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/27 02:38:18 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/27 15:00:36 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "ft_pf_utils.h"
 
+static int
+	add_minus_sign(char *buf, t_format spc,
+					int count, int i)
+{
+	int		count_for_width;
+	int		count_for_prec;
+
+	count_for_width = count;
+	count_for_prec = count;
+	if ((spc.flags & LEADZEROFLAG) && spc.prec < 0
+			&& !(spc.flags & LEFTFORMATFLAG))
+	{
+		while (spc.width-- > count_for_width + 1)
+		{
+			buf[--i] = '0';
+			count_for_prec++;
+		}
+	}
+	while (spc.prec-- > count_for_prec)
+		buf[--i] = '0';
+	buf[--i] = '-';
+	return (i);
+}
+
 static char
 	*to_dec_string(char *buf, unsigned long long n, t_format spc, int str_len)
 {
 	int		i;
 	int		neg;
-	int		count_for_width;
-	int		count_for_prec;
+	int		count;
 
-	neg = 0;
-	count_for_width = 1;
-	count_for_prec = 1;
+	neg = ((spc.flags & SIGNEDFLAG) && (long long)n < 0) ? 1 : 0;
+	count = 1;
 	i = str_len;
 	if ((spc.flags & SIGNEDFLAG) && (long long)n < 0)
-	{
-		neg = 1;
 		n = -n;
-	}
 	buf[--i] = '\0';
 	buf[--i] = (n % 10) + '0';
 	n /= 10;
@@ -37,27 +56,24 @@ static char
 	{
 		buf[--i] = (n % 10) + '0';
 		n /= 10;
-		count_for_width++;
-		count_for_prec++;
+		count++;
 	}
 	if (neg)
-	{
-		if ((spc.flags & LEADZEROFLAG) && spc.prec < 0
-				&& !(spc.flags & LEFTFORMATFLAG))
-		{
-			while (spc.width-- > count_for_width + 1)
-			{
-				buf[--i] = '0';
-				count_for_prec++;
-			}
-		}
-		while (spc.prec-- > count_for_prec)
-			buf[--i] = '0';
-		buf[--i] = '-';
-	}
+		i = add_minus_sign(buf, spc, count, i);
 	else if (spc.flags & SHOWSIGNFLAG)
 		buf[--i] = '+';
 	return (&buf[i]);
+}
+
+static int
+	put_width_space(int width, int out_len)
+{
+	while (width-- > 0)
+	{
+		ft_putchar(' ');
+		out_len++;
+	}
+	return (out_len);
 }
 
 int
@@ -78,13 +94,7 @@ int
 	else if (**fmt == 'u')
 		va_n = va_arg(*ap, unsigned int);
 	if (va_n == 0 && spc->prec == 0)
-	{
-		while (spc->width-- > 0)
-		{
-			ft_putchar(' ');
-			out_len++;
-		}
-	}
+		out_len += put_width_space(spc->width, out_len);
 	else
 	{
 		s = to_dec_string(buf, va_n, *spc, sizeof(buf));

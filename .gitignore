@@ -29,6 +29,7 @@
 *.pdb
 
 # tests
+pft_2019/
 tests/
 test
 
@@ -42,3 +43,4 @@ test
 CMakeLists.txt
 cmake-build-debug/
 .idea
+pft_2019/

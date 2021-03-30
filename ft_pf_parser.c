@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:30:57 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/25 17:49:28 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/30 14:26:05 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ int
 	spc.flags = 0;
 	spc.width = 0;
 	spc.prec = -1;
-	if (percent_printed(fmt))
-		return (++print_len);
 	while (**fmt != '\0' && is_flag_width_prec(**fmt))
 	{
 		spc.flags = flag_checker(fmt, spc.flags, spc.width);

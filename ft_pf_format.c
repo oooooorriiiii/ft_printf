@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:44:45 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/25 23:57:29 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/30 14:22:04 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@ int
 int
 	formatting(const char **fmt, va_list *ap, t_format *spc, int print_len)
 {
-	if (**fmt == 'c')
+	if (**fmt == '%')
+		print_len += percent_printed(spc);
+	else if (**fmt == 'c')
 		print_len += character_format(ap, spc);
 	else if (**fmt == 's')
 		print_len += string_format(ap, spc);

@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:53:06 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/27 16:19:03 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/30 14:25:41 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char			*to_hex_string(char *buf, unsigned long long n, int flag,
 						int str_len);
 int				ptr_format(va_list *ap, t_format *spc);
 int				plain_text_print(const char **c, int print_len);
-int				percent_printed(const char **fmt);
+int				percent_printed(t_format *spc);
 int				out_char(const char c, t_format *spc);
 int				out_str(const char *s, t_format *spc);
 int				out_nbr(const char *s, t_format *spc);

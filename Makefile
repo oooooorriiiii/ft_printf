@@ -1,5 +1,5 @@
 CC = gcc
-# CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 NAME = libftprintf.a
 
@@ -18,7 +18,6 @@ SRCS = 	ft_printf.c \
 		ft_pf_out_nbr.c
 OBJS = $(SRCS:%.c=%.o)	
 
-TEST_SRCS = $(SRCS) tests/test.c
 TEST_OBJS = $(TEST_SRCS:%.c=%.o)
 
 all: $(NAME)
@@ -26,16 +25,12 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	ar rcs $@ $^
 
-
-test: $(TEST_OBJS)
-	gcc -o $@ $^
-
 clean:
 	rm -f $(OBJS) $(TEST_OBJS)
 
 fclean: clean
-	rm -f $(NAME) test
+	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re test
+.PHONY: all clean fclean re

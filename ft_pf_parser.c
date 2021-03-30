@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:30:57 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/30 14:26:05 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/30 15:28:30 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int
 		if (**fmt == '.')
 			spc.prec = prec_checker(fmt, ap, spc.prec);
 	}
+	if (**fmt == '\0')
+		return (-1);
 	print_len = formatting(fmt, ap, &spc, print_len);
 	(*fmt)++;
 	return (print_len);

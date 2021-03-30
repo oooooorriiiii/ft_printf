@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 16:53:03 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/27 02:38:46 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/30 22:07:16 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void
 }
 
 char
-	*to_hex_string(char *buf, unsigned long long n, int flag, int str_len)
+	*to_hex_string(char *buf, unsigned long long n, t_format *spc, int str_len)
 {
 	int		i;
 	char	digits[17];
@@ -52,7 +52,7 @@ char
 	i = str_len;
 	digits_init(digits);
 	digits_caps_init(digits_caps);
-	table = (flag & CAPSFLAG) ? digits_caps : digits;
+	table = (spc->flags & CAPSFLAG) ? digits_caps : digits;
 	buf[--i] = '\0';
 	buf[--i] = table[n % 16];
 	n /= 16;
@@ -61,18 +61,13 @@ char
 		buf[--i] = table[n % 16];
 		n /= 16;
 	}
-	if (flag & ALTFLAG)
+	if (spc->flags & ALTFLAG)
 	{
-		buf[--i] = (flag & CAPSFLAG) ? 'X' : 'x';
+		buf[--i] = (spc->flags & CAPSFLAG) ? 'X' : 'x';
 		buf[--i] = '0';
 	}
 	return (&buf[i]);
 }
-
-/*
-** It does not consider shat happens when the precision and
-** width are specified at the same time.
-*/
 
 int
 	hex_format(const char **fmt, va_list *ap, t_format *spc)
@@ -88,7 +83,7 @@ int
 	va_n = va_arg(*ap, unsigned int);
 	if (!(va_n == 0 && spc->prec == 0))
 	{
-		s = to_hex_string(buf, va_n, spc->flags, sizeof(buf));
+		s = to_hex_string(buf, va_n, spc, sizeof(buf));
 		out_len += out_nbr(s, spc);
 	}
 	else

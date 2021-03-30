@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:53:06 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/30 15:07:20 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/30 21:07:22 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int				formatting(const char **fmt, va_list *ap, t_format *spc,
 							int print_len);
 int				dec_format(const char **fmt, va_list *ap, t_format *spc);
 int				hex_format(const char **fmt, va_list *ap, t_format *spc);
-char			*to_hex_string(char *buf, unsigned long long n, int flag,
+char			*to_hex_string(char *buf, unsigned long long n, t_format *spc,
 						int str_len);
 int				ptr_format(va_list *ap, t_format *spc);
 int				plain_text_print(const char **c, int print_len);

@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 15:07:24 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/27 15:49:51 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/30 20:43:42 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,14 @@ static int
 }
 
 static int
+	out_zero(int *count)
+{
+	ft_putchar('0');
+	(*count)++;
+	return (1);
+}
+
+static int
 	out_space(int *count)
 {
 	ft_putchar(' ');
@@ -77,7 +85,12 @@ int
 	if (spc->prec == 0)
 		return (prec_zero(width, out_len));
 	while (width-- > fmt_len && !(spc->flags & LEFTFORMATFLAG))
-		out_len += out_space(&count);
+	{
+		if (spc->flags & LEADZEROFLAG)
+			out_len += out_zero(&count);
+		else
+			out_len += out_space(&count);
+	}
 	out_len += str_print(s, spc->prec, &count);
 	while (count < spc->width && (spc->flags & LEFTFORMATFLAG))
 		out_len += out_space(&count);

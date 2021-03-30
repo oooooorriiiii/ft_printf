@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:55:57 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/27 15:00:36 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/30 15:08:16 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ static char
 		i = add_minus_sign(buf, spc, count, i);
 	else if (spc.flags & SHOWSIGNFLAG)
 		buf[--i] = '+';
+	else if (spc.flags & SPACEFLAG)
+		buf[--i] = ' ';
 	return (&buf[i]);
 }
 

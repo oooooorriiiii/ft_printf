@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 23:03:57 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/25 17:54:12 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/30 15:08:47 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int
 		flags |= SHOWSIGNFLAG;
 	else if (**fmt == '#')
 		flags |= ALTFLAG;
+	else if (**fmt == ' ')
+		flags |= SPACEFLAG;
 	else
 		return (flags);
 	(*fmt)++;

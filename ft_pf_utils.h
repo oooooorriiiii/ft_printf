@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:53:06 by ymori             #+#    #+#             */
-/*   Updated: 2021/03/30 14:25:41 by ymori            ###   ########.fr       */
+/*   Updated: 2021/03/30 15:07:20 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define LEADZEROFLAG	0x00000008
 # define SHOWSIGNFLAG	0x00000010
 # define ALTFLAG		0x00000020
+# define SPACEFLAG		0x00000040
 
 typedef	struct	s_format{
 	int		flags;

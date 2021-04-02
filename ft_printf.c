@@ -6,7 +6,7 @@
 /*   By: ymori <ymori@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 16:26:55 by ymori             #+#    #+#             */
-/*   Updated: 2021/04/01 12:21:48 by ymori            ###   ########.fr       */
+/*   Updated: 2021/04/02 23:52:12 by ymori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ static int
 	while (*fmt != '\0')
 	{
 		if (*fmt != '%')
-			print_len = (unsigned int)plain_text_print(&fmt, print_len);
+			print_len = plain_text_print(&fmt, print_len);
 		else
 		{
 			fmt++;
-			print_len = (unsigned int)arg_print(&fmt, ap, print_len);
+			print_len = arg_print(&fmt, ap, print_len);
 		}
 	}
 	return (print_len);

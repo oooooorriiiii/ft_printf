@@ -22,6 +22,8 @@ TEST_OBJS = $(TEST_SRCS:%.c=%.o)
 
 all: $(NAME)
 
+bonus: re
+
 $(NAME): $(OBJS)
 	ar rcs $@ $^
 

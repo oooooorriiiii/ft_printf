@@ -32,6 +32,7 @@
 pft_2019/
 tests/
 test
+test.sh
 
 # vscode
 .vscode
